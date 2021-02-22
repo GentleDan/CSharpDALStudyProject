@@ -135,6 +135,7 @@
             // 
             // dataMaterialGridView
             // 
+            this.dataMaterialGridView.AllowUserToAddRows = false;
             this.dataMaterialGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataMaterialGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataMaterialGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

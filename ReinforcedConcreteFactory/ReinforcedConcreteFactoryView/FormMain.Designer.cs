@@ -32,12 +32,14 @@
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storehousesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataOrderFactoryGridView = new System.Windows.Forms.DataGridView();
             this.createOrderButton = new System.Windows.Forms.Button();
             this.submitExecutionButton = new System.Windows.Forms.Button();
             this.orderReadyButton = new System.Windows.Forms.Button();
             this.orderPaidButton = new System.Windows.Forms.Button();
             this.refreshListButton = new System.Windows.Forms.Button();
+            this.storehouseRefillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataOrderFactoryGridView)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +47,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.referencesToolStripMenuItem});
+            this.referencesToolStripMenuItem,
+            this.storehouseRefillToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(804, 24);
@@ -56,7 +59,8 @@
             // 
             this.referencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materialsToolStripMenuItem,
-            this.reinforcedToolStripMenuItem});
+            this.reinforcedToolStripMenuItem,
+            this.storehousesToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
             this.referencesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.referencesToolStripMenuItem.Text = "Справочники";
@@ -64,16 +68,23 @@
             // materialsToolStripMenuItem
             // 
             this.materialsToolStripMenuItem.Name = "materialsToolStripMenuItem";
-            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.materialsToolStripMenuItem.Text = "Материалы";
             this.materialsToolStripMenuItem.Click += new System.EventHandler(this.materialsToolStripMenuItem_Click);
             // 
             // reinforcedToolStripMenuItem
             // 
             this.reinforcedToolStripMenuItem.Name = "reinforcedToolStripMenuItem";
-            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reinforcedToolStripMenuItem.Text = "Изделия";
             this.reinforcedToolStripMenuItem.Click += new System.EventHandler(this.reinforcedToolStripMenuItem_Click);
+            // 
+            // storehousesToolStripMenuItem
+            // 
+            this.storehousesToolStripMenuItem.Name = "storehousesToolStripMenuItem";
+            this.storehousesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.storehousesToolStripMenuItem.Text = "Склады";
+            this.storehousesToolStripMenuItem.Click += new System.EventHandler(this.storehousesToolStripMenuItem_Click);
             // 
             // dataOrderFactoryGridView
             // 
@@ -136,6 +147,13 @@
             this.refreshListButton.UseVisualStyleBackColor = true;
             this.refreshListButton.Click += new System.EventHandler(this.refreshListButton_Click);
             // 
+            // storehouseRefillToolStripMenuItem
+            // 
+            this.storehouseRefillToolStripMenuItem.Name = "storehouseRefillToolStripMenuItem";
+            this.storehouseRefillToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.storehouseRefillToolStripMenuItem.Text = "Пополнение склада";
+            this.storehouseRefillToolStripMenuItem.Click += new System.EventHandler(this.storehouseRefillToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,5 +189,7 @@
         private System.Windows.Forms.Button orderReadyButton;
         private System.Windows.Forms.Button orderPaidButton;
         private System.Windows.Forms.Button refreshListButton;
+        private System.Windows.Forms.ToolStripMenuItem storehousesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem storehouseRefillToolStripMenuItem;
     }
 }

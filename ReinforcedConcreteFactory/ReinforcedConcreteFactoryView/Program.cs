@@ -27,9 +27,11 @@ namespace ReinforcedConcreteFactoryView
             currentContainer.RegisterType<IMaterialStorage, MaterialStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IReinforcedStorage, ReinforcedStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStoreHouseStorage, StoreHouseStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<MaterialLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReinforcedLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<StoreHouseLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
