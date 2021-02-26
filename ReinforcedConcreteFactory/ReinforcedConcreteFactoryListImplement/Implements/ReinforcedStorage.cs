@@ -105,21 +105,21 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
             // удаляем убранные
             foreach (int key in reinforced.ReinforcedMaterials.Keys.ToList())
             {
-                if (!model.ReinforcedMaterial.ContainsKey(key))
+                if (!model.ReinforcedMaterials.ContainsKey(key))
                 {
                     reinforced.ReinforcedMaterials.Remove(key);
                 }
             }
             // обновляем существуюущие и добавляем новые
-            foreach (KeyValuePair<int, (string, int)> component in model.ReinforcedMaterial)
+            foreach (KeyValuePair<int, (string, int)> component in model.ReinforcedMaterials)
             {
                 if (reinforced.ReinforcedMaterials.ContainsKey(component.Key))
                 {
-                    reinforced.ReinforcedMaterials[component.Key] = model.ReinforcedMaterial[component.Key].Item2;
+                    reinforced.ReinforcedMaterials[component.Key] = model.ReinforcedMaterials[component.Key].Item2;
                 }
                 else
                 {
-                    reinforced.ReinforcedMaterials.Add(component.Key, model.ReinforcedMaterial[component.Key].Item2);
+                    reinforced.ReinforcedMaterials.Add(component.Key, model.ReinforcedMaterials[component.Key].Item2);
                 }
             }
             return reinforced;

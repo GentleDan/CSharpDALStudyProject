@@ -154,7 +154,7 @@ namespace ReinforcedConcreteFactoryView
                     Id = id,
                     ReinforcedName = reinforcedNameTextBox.Text,
                     Price = Convert.ToDecimal(reinforcedPriceTextBox.Text),
-                    ReinforcedMaterial = reinforcedMaterials
+                    ReinforcedMaterials = reinforcedMaterials
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
