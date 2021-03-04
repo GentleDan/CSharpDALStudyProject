@@ -175,6 +175,10 @@
       <Project>{26c45ca4-daf8-406c-bf38-99f13a33d012}</Project>
       <Name>ReinforcedConcreteFactoryBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReinforcedConcreteFactoryFileImplement\ReinforcedConcreteFactoryFileImplement.csproj">
+      <Project>{c27adfd2-8137-4acf-853b-9cf7909454b9}</Project>
+      <Name>ReinforcedConcreteFactoryFileImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReinforcedConcreteFactoryListImplement\ReinforcedConcreteFactoryListImplement.csproj">
       <Project>{ab614741-4542-4782-b065-3204e7410a23}</Project>
       <Name>ReinforcedConcreteFactoryListImplement</Name>
