@@ -87,7 +87,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             {
                 Id = order.Id,
                 ReinforcedId = order.ReinforcedId,
-                ReinforcedName = reinforcedName,
+                ReinforcedName = source.Reinforceds.FirstOrDefault(x => x.Id == order.ReinforcedId)?.ReinforcedName,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
