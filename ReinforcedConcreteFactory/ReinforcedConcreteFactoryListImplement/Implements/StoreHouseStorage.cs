@@ -186,5 +186,10 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                 }
             }
         }
+
+        public bool TakeFromStoreHouse(Dictionary<int, (string, int)> materials, int reinforcedCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,9 +10,13 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IReinforcedStorage _reinforcedStorage;
+        private readonly IStoreHouseStorage _storeHouseStorage;
+        public OrderLogic(IOrderStorage orderStorage, IReinforcedStorage reinforcedStorage, IStoreHouseStorage storeHouseStorage)
         {
             _orderStorage = orderStorage;
+            _reinforcedStorage = reinforcedStorage;
+            _storeHouseStorage = storeHouseStorage;
         }
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
@@ -50,6 +54,10 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             if (order.Status != OrderStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
+            }
+            if (!_storeHouseStorage.TakeFromStoreHouse(_reinforcedStorage.GetElement(new ReinforcedBindingModel { Id = order.ReinforcedId }).ReinforcedMaterial, order.Count))
+            {
+                throw new Exception("Недостаточно материалов");
             }
             _orderStorage.Update(new OrderBindingModel
             {

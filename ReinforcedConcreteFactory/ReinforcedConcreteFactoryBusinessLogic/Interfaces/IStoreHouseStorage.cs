@@ -17,5 +17,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.Interfaces
         void Update(StoreHouseBindingModel model);
 
         void Delete(StoreHouseBindingModel model);
+
+        bool TakeFromStoreHouse(Dictionary<int, (string, int)> materials, int reinforcedCount);
     }
 }
