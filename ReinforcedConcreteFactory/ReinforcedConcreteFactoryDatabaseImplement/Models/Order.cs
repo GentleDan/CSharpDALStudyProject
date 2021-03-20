@@ -17,5 +17,6 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Models
         [Required]
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+        public virtual Reinforced Reinforced { get; set; }
     }
 }

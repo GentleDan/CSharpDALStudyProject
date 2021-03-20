@@ -70,15 +70,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 {
                     try
                     {
-                        Reinforced r = new Reinforced
-                        {
-                            ReinforcedName = model.ReinforcedName,
-                            Price = model.Price
-                        };
-                        context.Reinforceds.Add(r);
-                        context.SaveChanges();
-                        CreateModel(model, r, context);
-                        context.SaveChanges();
+                        CreateModel(model, new Reinforced(), context);
                         transaction.Commit();
                     }
                     catch
@@ -103,7 +95,6 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                             throw new Exception("Элемент не найден");
                         }
                         CreateModel(model, element, context);
-                        context.SaveChanges();
                         transaction.Commit();
                     }
                     catch
@@ -132,8 +123,15 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
         }
         private Reinforced CreateModel(ReinforcedBindingModel model, Reinforced reinforced, ReinforcedConcreteFactoryDatabase context)
         {
-            if (model.Id.HasValue)
+            reinforced.ReinforcedName = model.ReinforcedName;
+            reinforced.Price = model.Price;
+            if (reinforced.Id == 0)
             {
+                context.Reinforceds.Add(reinforced);
+                context.SaveChanges();
+            }
+            if (model.Id.HasValue)
+            {  
                 List<ReinforcedMaterial> reinforcedMaterials = context.ReinforcedMaterials.Where(rec => rec.ReinforcedId == model.Id.Value).ToList();
                 // удалили те, которых нет в модели
                 context.ReinforcedMaterials.RemoveRange(reinforcedMaterials.Where(rec => !model.ReinforcedMaterials.ContainsKey(rec.MaterialId)).ToList());

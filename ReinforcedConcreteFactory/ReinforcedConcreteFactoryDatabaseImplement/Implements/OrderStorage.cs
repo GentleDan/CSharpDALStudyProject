@@ -1,4 +1,5 @@
-﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+﻿using Microsoft.EntityFrameworkCore;
+using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using ReinforcedConcreteFactoryDatabaseImplement.Models;
@@ -14,12 +15,12 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
         {
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                return context.Orders
+                return context.Orders.Include(rec => rec.Reinforced)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ReinforcedId = rec.ReinforcedId,
-                    ReinforcedName = context.Reinforceds.FirstOrDefault(pr => pr.Id == rec.ReinforcedId).ReinforcedName,
+                    ReinforcedName = rec.Reinforced.ReinforcedName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
@@ -37,13 +38,13 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             }
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                return context.Orders
+                return context.Orders.Include(rec => rec.Reinforced)
                 .Where(rec => rec.ReinforcedId == model.ReinforcedId)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ReinforcedId = rec.ReinforcedId,
-                    ReinforcedName = context.Reinforceds.FirstOrDefault(pr => pr.Id == rec.ReinforcedId).ReinforcedName,
+                    ReinforcedName = rec.Reinforced.ReinforcedName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
@@ -61,14 +62,14 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             }
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                Order order = context.Orders
+                Order order = context.Orders.Include(rec => rec.Reinforced)
                 .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
                 {
                     Id = order.Id,
                     ReinforcedId = order.ReinforcedId,
-                    ReinforcedName = context.Reinforceds.FirstOrDefault(rec => rec.Id == order.ReinforcedId)?.ReinforcedName,
+                    ReinforcedName = order.Reinforced.ReinforcedName,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
