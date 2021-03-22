@@ -12,6 +12,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Models
         public string MaterialName { get; set; }
         [ForeignKey("MaterialId")]
         public virtual List<ReinforcedMaterial> ReinforcedMaterials { get; set; }
-
+        [ForeignKey("MaterialId")]
+        public virtual List<StoreHouseMaterial> StoreHouseMaterials { get; set; }
     }
 }
