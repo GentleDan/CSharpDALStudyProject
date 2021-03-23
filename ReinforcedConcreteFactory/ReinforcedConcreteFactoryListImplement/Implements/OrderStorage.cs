@@ -33,7 +33,7 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (Order component in source.Orders)
             {
-                if (component.ReinforcedId.ToString().Contains(model.ReinforcedId.ToString()))
+                if ((component.DateCreate >= model.DateFrom && component.DateCreate <= model.DateTo))
                 {
                     result.Add(CreateModel(component));
                 }

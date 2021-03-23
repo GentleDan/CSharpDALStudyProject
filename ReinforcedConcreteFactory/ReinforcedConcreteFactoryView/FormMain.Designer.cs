@@ -32,6 +32,10 @@
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reinforcedListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reinforcedMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataOrderFactoryGridView = new System.Windows.Forms.DataGridView();
             this.createOrderButton = new System.Windows.Forms.Button();
             this.submitExecutionButton = new System.Windows.Forms.Button();
@@ -45,7 +49,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.referencesToolStripMenuItem});
+            this.referencesToolStripMenuItem,
+            this.отчетыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(804, 24);
@@ -74,6 +79,37 @@
             this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.reinforcedToolStripMenuItem.Text = "Изделия";
             this.reinforcedToolStripMenuItem.Click += new System.EventHandler(this.reinforcedToolStripMenuItem_Click);
+            // 
+            // отчетыToolStripMenuItem
+            // 
+            this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reinforcedListToolStripMenuItem,
+            this.reinforcedMaterialsToolStripMenuItem,
+            this.ordersListToolStripMenuItem});
+            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
+            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.отчетыToolStripMenuItem.Text = "Отчеты";
+            // 
+            // reinforcedListToolStripMenuItem
+            // 
+            this.reinforcedListToolStripMenuItem.Name = "reinforcedListToolStripMenuItem";
+            this.reinforcedListToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.reinforcedListToolStripMenuItem.Text = "Список изделий";
+            this.reinforcedListToolStripMenuItem.Click += new System.EventHandler(this.reinforcedListToolStripMenuItem_Click);
+            // 
+            // reinforcedMaterialsToolStripMenuItem
+            // 
+            this.reinforcedMaterialsToolStripMenuItem.Name = "reinforcedMaterialsToolStripMenuItem";
+            this.reinforcedMaterialsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.reinforcedMaterialsToolStripMenuItem.Text = "Материалы по изделям";
+            this.reinforcedMaterialsToolStripMenuItem.Click += new System.EventHandler(this.reinforcedMaterialsToolStripMenuItem_Click);
+            // 
+            // ordersListToolStripMenuItem
+            // 
+            this.ordersListToolStripMenuItem.Name = "ordersListToolStripMenuItem";
+            this.ordersListToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.ordersListToolStripMenuItem.Text = "Список заказов";
+            this.ordersListToolStripMenuItem.Click += new System.EventHandler(this.ordersListToolStripMenuItem_Click);
             // 
             // dataOrderFactoryGridView
             // 
@@ -171,5 +207,9 @@
         private System.Windows.Forms.Button orderReadyButton;
         private System.Windows.Forms.Button orderPaidButton;
         private System.Windows.Forms.Button refreshListButton;
+        private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reinforcedListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reinforcedMaterialsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ordersListToolStripMenuItem;
     }
 }

@@ -25,7 +25,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             {
                 return null;
             }
-            return source.Orders.Where(rec => rec.ReinforcedId.ToString().Contains(model.ReinforcedId.ToString())).Select(CreateModel).ToList();
+            return source.Orders.Where((rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)).Select(CreateModel).ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {

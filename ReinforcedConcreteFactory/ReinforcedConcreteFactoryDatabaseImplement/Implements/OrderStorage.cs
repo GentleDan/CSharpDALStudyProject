@@ -39,7 +39,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
                 return context.Orders.Include(rec => rec.Reinforced)
-                .Where(rec => rec.ReinforcedId == model.ReinforcedId)
+                .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
