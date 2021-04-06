@@ -33,6 +33,7 @@ namespace ReinforcedConcreteFactoryView
                     dataOrderFactoryGridView.DataSource = list;
                     dataOrderFactoryGridView.Columns[0].Visible = false;
                     dataOrderFactoryGridView.Columns[1].Visible = false;
+                    dataOrderFactoryGridView.Columns[2].Visible = false;
                     dataOrderFactoryGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
@@ -154,6 +155,12 @@ namespace ReinforcedConcreteFactoryView
         private void ordersListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
+        }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClients>();
             form.ShowDialog();
         }
     }

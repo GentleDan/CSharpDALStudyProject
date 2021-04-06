@@ -31,11 +31,14 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                 return null;
             }
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (Order component in source.Orders)
+            foreach (Order order in source.Orders)
             {
-                if ((component.DateCreate >= model.DateFrom && component.DateCreate <= model.DateTo))
+                if (((model.ClientId.HasValue && order.ClientId == model.ClientId) ||
+                !model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date
+                && order.DateCreate.Date <= model.DateTo.Value.Date))
                 {
-                    result.Add(CreateModel(component));
+                    result.Add(CreateModel(order));
                 }
             }
             return result;
@@ -46,11 +49,11 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
             {
                 return null;
             }
-            foreach (Order component in source.Orders)
+            foreach (Order order in source.Orders)
             {
-                if (component.Id == model.Id || component.ReinforcedId == model.ReinforcedId)
+                if (order.Id == model.Id || order.ReinforcedId == model.ReinforcedId)
                 {
-                    return CreateModel(component);
+                    return CreateModel(order);
                 }
             }
             return null;
@@ -97,6 +100,7 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
+            order.ClientId = (int) model.ClientId;
             order.ReinforcedId = model.ReinforcedId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -108,16 +112,17 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
         private OrderViewModel CreateModel(Order order)
         {
             string reinforcedName = null;
-            foreach (Reinforced set in source.Reinforceds)
+            foreach (Reinforced reinforced in source.Reinforceds)
             {
-                if (set.Id == order.ReinforcedId)
+                if (reinforced.Id == order.ReinforcedId)
                 {
-                    reinforcedName = set.ReinforcedName;
+                    reinforcedName = reinforced.ReinforcedName;
                 }
             }
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ReinforcedId = order.ReinforcedId,
                 ReinforcedName = reinforcedName,
                 Count = order.Count,

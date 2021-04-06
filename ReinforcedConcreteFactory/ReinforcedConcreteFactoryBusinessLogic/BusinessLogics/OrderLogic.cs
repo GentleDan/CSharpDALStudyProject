@@ -30,6 +30,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
         {
             _orderStorage.Insert(new OrderBindingModel
             {
+                ClientId = model.ClientId,
                 ReinforcedId = model.ReinforcedId,
                 Count = model.Count,
                 Sum = model.Sum,
@@ -54,6 +55,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ReinforcedId = order.ReinforcedId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -79,6 +81,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ReinforcedId = order.ReinforcedId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -104,6 +107,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ReinforcedId = order.ReinforcedId,
                 Count = order.Count,
                 Sum = order.Sum,

@@ -19,6 +19,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    ClientFIO = rec.Client.ClientFIO,
                     ReinforcedId = rec.ReinforcedId,
                     ReinforcedName = rec.Reinforced.ReinforcedName,
                     Count = rec.Count,
@@ -39,10 +41,15 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
                 return context.Orders.Include(rec => rec.Reinforced)
-                .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date 
+                >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    ClientFIO = rec.Client.ClientFIO,
                     ReinforcedId = rec.ReinforcedId,
                     ReinforcedName = rec.Reinforced.ReinforcedName,
                     Count = rec.Count,
@@ -68,6 +75,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 new OrderViewModel
                 {
                     Id = order.Id,
+                    ClientId = order.ClientId,
+                    ClientFIO = order.Client.ClientFIO,
                     ReinforcedId = order.ReinforcedId,
                     ReinforcedName = order.Reinforced.ReinforcedName,
                     Count = order.Count,
@@ -85,6 +94,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             {
                 Order order = new Order
                 {
+                    ClientId = (int) model.ClientId,
                     ReinforcedId = model.ReinforcedId,
                     Count = model.Count,
                     Sum = model.Sum,
@@ -107,6 +117,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 {
                     throw new Exception("Элемент не найден");
                 }
+                element.ClientId = (int) model.ClientId;
                 element.ReinforcedId = model.ReinforcedId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;

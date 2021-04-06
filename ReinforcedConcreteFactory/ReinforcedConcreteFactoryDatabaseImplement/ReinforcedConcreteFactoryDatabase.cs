@@ -17,5 +17,6 @@ namespace ReinforcedConcreteFactoryDatabaseImplement
         public virtual DbSet<Reinforced> Reinforceds { set; get; }
         public virtual DbSet<ReinforcedMaterial> ReinforcedMaterials { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Client> Clients { set; get; }
     }
 }

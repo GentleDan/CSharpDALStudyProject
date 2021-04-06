@@ -42,6 +42,7 @@
             this.orderReadyButton = new System.Windows.Forms.Button();
             this.orderPaidButton = new System.Windows.Forms.Button();
             this.refreshListButton = new System.Windows.Forms.Button();
+            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataOrderFactoryGridView)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,8 @@
             // 
             this.referencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materialsToolStripMenuItem,
-            this.reinforcedToolStripMenuItem});
+            this.reinforcedToolStripMenuItem,
+            this.clientsToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
             this.referencesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.referencesToolStripMenuItem.Text = "Справочники";
@@ -69,14 +71,14 @@
             // materialsToolStripMenuItem
             // 
             this.materialsToolStripMenuItem.Name = "materialsToolStripMenuItem";
-            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.materialsToolStripMenuItem.Text = "Материалы";
             this.materialsToolStripMenuItem.Click += new System.EventHandler(this.materialsToolStripMenuItem_Click);
             // 
             // reinforcedToolStripMenuItem
             // 
             this.reinforcedToolStripMenuItem.Name = "reinforcedToolStripMenuItem";
-            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reinforcedToolStripMenuItem.Text = "Изделия";
             this.reinforcedToolStripMenuItem.Click += new System.EventHandler(this.reinforcedToolStripMenuItem_Click);
             // 
@@ -172,6 +174,13 @@
             this.refreshListButton.UseVisualStyleBackColor = true;
             this.refreshListButton.Click += new System.EventHandler(this.refreshListButton_Click);
             // 
+            // clientsToolStripMenuItem
+            // 
+            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Text = "Клиенты";
+            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,5 +220,6 @@
         private System.Windows.Forms.ToolStripMenuItem reinforcedListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reinforcedMaterialsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordersListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
     }
 }

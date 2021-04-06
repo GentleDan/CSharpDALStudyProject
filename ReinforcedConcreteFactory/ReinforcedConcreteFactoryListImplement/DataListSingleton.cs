@@ -9,11 +9,13 @@ namespace ReinforcedConcreteFactoryListImplement
         public List<Material> Materials { get; set; }
         public List<Order> Orders { get; set; }
         public List<Reinforced> Reinforceds { get; set; }
+        public List<Client> Clients { get; set; }
         private DataListSingleton()
         {
             Materials = new List<Material>();
             Orders = new List<Order>();
             Reinforceds = new List<Reinforced>();
+            Clients = new List<Client>();
         }
         public static DataListSingleton GetInstance()
         {
