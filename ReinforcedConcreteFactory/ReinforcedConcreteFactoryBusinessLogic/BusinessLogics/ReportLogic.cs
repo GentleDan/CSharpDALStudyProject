@@ -29,19 +29,19 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             var materials = _materialStorage.GetFullList();
             var reinforceds = _reinforcedStorage.GetFullList();
             var list = new List<ReportReinforcedMaterialViewModel>();
-            foreach (var material in materials)
+            foreach (var reinforced in reinforceds)
             {
                 var record = new ReportReinforcedMaterialViewModel
                 {
-                    MaterialName = material.MaterialName,
-                    Reinforceds = new List<Tuple<string, int>>(),
+                    ReinforcedName = reinforced.ReinforcedName,
+                    ReinforcedMaterials = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var reinforced in reinforceds)
+                foreach (var material in materials)
                 {
                     if (reinforced.ReinforcedMaterial.ContainsKey(material.Id))
                     {
-                        record.Reinforceds.Add(new Tuple<string, int>(reinforced.ReinforcedName,
+                        record.ReinforcedMaterials.Add(new Tuple<string, int>(material.MaterialName,
                         reinforced.ReinforcedMaterial[material.Id].Item2));
                         record.TotalCount += reinforced.ReinforcedMaterial[material.Id].Item2;
                     }

@@ -70,11 +70,11 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = rm.MaterialName,
+                        Text = rm.ReinforcedName,
                         StyleIndex = 0U
                     });
                     rowIndex++;
-                    foreach (var reinforced in rm.Reinforceds)
+                    foreach (var reinforced in rm.ReinforcedMaterials)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {

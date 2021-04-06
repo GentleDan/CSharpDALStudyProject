@@ -30,8 +30,8 @@
         {
             this.saveToExcelButton = new System.Windows.Forms.Button();
             this.reportReinforcedMaterialsDataGridView = new System.Windows.Forms.DataGridView();
-            this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Reinforced = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.reportReinforcedMaterialsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -52,8 +52,8 @@
             this.reportReinforcedMaterialsDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.reportReinforcedMaterialsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.reportReinforcedMaterialsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Material,
             this.Reinforced,
+            this.Material,
             this.Count});
             this.reportReinforcedMaterialsDataGridView.Location = new System.Drawing.Point(12, 52);
             this.reportReinforcedMaterialsDataGridView.Name = "reportReinforcedMaterialsDataGridView";
@@ -61,17 +61,17 @@
             this.reportReinforcedMaterialsDataGridView.Size = new System.Drawing.Size(535, 415);
             this.reportReinforcedMaterialsDataGridView.TabIndex = 1;
             // 
-            // Material
-            // 
-            this.Material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Material.HeaderText = "Материал";
-            this.Material.Name = "Material";
-            // 
             // Reinforced
             // 
             this.Reinforced.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Reinforced.HeaderText = "Изделие";
             this.Reinforced.Name = "Reinforced";
+            // 
+            // Material
+            // 
+            this.Material.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Material.HeaderText = "Материал";
+            this.Material.Name = "Material";
             // 
             // Count
             // 
@@ -98,8 +98,8 @@
 
         private System.Windows.Forms.Button saveToExcelButton;
         private System.Windows.Forms.DataGridView reportReinforcedMaterialsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Material;
         private System.Windows.Forms.DataGridViewTextBoxColumn Reinforced;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Material;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
     }
 }

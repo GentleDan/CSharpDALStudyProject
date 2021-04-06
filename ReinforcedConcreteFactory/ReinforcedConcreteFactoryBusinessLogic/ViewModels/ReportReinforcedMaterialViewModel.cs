@@ -5,8 +5,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
 {
     public class ReportReinforcedMaterialViewModel
     {
-        public string MaterialName { get; set; }
+        public string ReinforcedName { get; set; }
         public int TotalCount { get; set; }
-        public List<Tuple<string, int>> Reinforceds { get; set; }
+        public List<Tuple<string, int>> ReinforcedMaterials { get; set; }
     }
 }

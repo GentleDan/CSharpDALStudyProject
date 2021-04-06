@@ -26,8 +26,8 @@ namespace ReinforcedConcreteFactoryView
                     reportReinforcedMaterialsDataGridView.Rows.Clear();
                     foreach (var elem in dict)
                     {
-                        reportReinforcedMaterialsDataGridView.Rows.Add(new object[] { elem.MaterialName, "", ""});
-                        foreach (var listElem in elem.Reinforceds)
+                        reportReinforcedMaterialsDataGridView.Rows.Add(new object[] { elem.ReinforcedName, "", ""});
+                        foreach (var listElem in elem.ReinforcedMaterials)
                         {
                             reportReinforcedMaterialsDataGridView.Rows.Add(new object[] { "", listElem.Item1, listElem.Item2 });
                         }
