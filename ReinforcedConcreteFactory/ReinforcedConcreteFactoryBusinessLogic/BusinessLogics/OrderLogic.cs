@@ -55,7 +55,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            if (!_storeHouseStorage.TakeFromStoreHouse(_reinforcedStorage.GetElement(new ReinforcedBindingModel { Id = order.ReinforcedId }).ReinforcedMaterial, order.Count))
+            if (!_storeHouseStorage.TakeFromStoreHouse(_reinforcedStorage
+                .GetElement(new ReinforcedBindingModel { Id = order.ReinforcedId }).ReinforcedMaterial, order.Count))
             {
                 throw new Exception("Недостаточно материалов");
             }

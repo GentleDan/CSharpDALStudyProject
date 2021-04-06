@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
-using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
+using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using ReinforcedConcreteFactoryDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
@@ -212,38 +212,31 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 {
                     try
                     {
-                        foreach (KeyValuePair<int, (string, int)> storeHouseMaterial in materials)
+                        foreach (KeyValuePair<int, (string, int)> material in materials)
                         {
-                            int count = storeHouseMaterial.Value.Item2 * reinforcedCount;
-                            IEnumerable<StoreHouseMaterial> storeHouseMaterials = context.StoreHouseMaterials.Where(storehouse => storehouse.MaterialId == storeHouseMaterial.Key);
-                            int availableCount = storeHouseMaterials.Sum(storehouse => storehouse.Count);
-                            if (availableCount < count)
+                            int requiredMaterialCount = material.Value.Item2 * reinforcedCount;
+                            IEnumerable<StoreHouseMaterial> storeHouseMaterials = context.StoreHouseMaterials
+                                .Where(storehouse => storehouse.MaterialId == material.Key);
+                            foreach (StoreHouseMaterial storeHouseMaterial in storeHouseMaterials)
                             {
-                                throw new Exception("На складе недостаточно материалов");
-                            }
-
-                            foreach (StoreHouseMaterial material in storeHouseMaterials)
-                            {
-                                if (material.Count <= count)
+                                if (storeHouseMaterial.Count <= requiredMaterialCount)
                                 {
-                                    count -= material.Count;
-                                    context.StoreHouseMaterials.Remove(material);
-                                    context.SaveChanges();
+                                    requiredMaterialCount -= storeHouseMaterial.Count;
+                                    context.StoreHouseMaterials.Remove(storeHouseMaterial);
                                 }
                                 else
                                 {
-                                    material.Count -= count;
-                                    context.SaveChanges();
-                                    count = 0;
-                                }
-
-                                if (count == 0)
-                                {
+                                    storeHouseMaterial.Count -= requiredMaterialCount;
+                                    requiredMaterialCount = 0;
                                     break;
                                 }
                             }
+                            if (requiredMaterialCount != 0)
+                            {
+                                throw new Exception("Нехватка материалов на складе");
+                            }
                         }
-
+                        context.SaveChanges();
                         transaction.Commit();
                         return true;
                     }
