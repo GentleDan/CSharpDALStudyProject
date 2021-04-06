@@ -113,7 +113,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 
             modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Reinforced", null)
+                    b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Reinforced", "Reinforced")
                         .WithMany("Orders")
                         .HasForeignKey("ReinforcedId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -10,7 +10,7 @@ using ReinforcedConcreteFactoryDatabaseImplement;
 namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 {
     [DbContext(typeof(ReinforcedConcreteFactoryDatabase))]
-    [Migration("20210309100347_InitialCreate")]
+    [Migration("20210406012653_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,7 +115,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 
             modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Reinforced", null)
+                    b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Reinforced", "Reinforced")
                         .WithMany("Orders")
                         .HasForeignKey("ReinforcedId")
                         .OnDelete(DeleteBehavior.Cascade)
