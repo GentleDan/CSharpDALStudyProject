@@ -35,7 +35,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 // Создаем лист в книгу
                 WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
                 worksheetPart.Worksheet = new Worksheet(new SheetData());
-                
+
                 // Добавляем лист в книгу
                 Sheets sheets =
                 spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
@@ -94,7 +94,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                             Text = reinforced.Item2.ToString(),
                             StyleIndex = 1U
                         });
-                        
+
                         rowIndex++;
                     }
                     InsertCellInWorksheet(new ExcelCellParameters
@@ -248,9 +248,9 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             });
             DocumentFormat.OpenXml.Office2013.Excel.DifferentialFormats
             differentialFormats = new DocumentFormat.OpenXml.Office2013.Excel.DifferentialFormats()
-           {
-               Count = (UInt32Value)0U
-           };
+            {
+                Count = (UInt32Value)0U
+            };
             TableStyles tableStyles = new TableStyles()
             {
                 Count = (UInt32Value)0U,
@@ -359,8 +359,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 }
                 else
                 {
-                   mergeParameters.Worksheet.InsertAfter(mergeCells,
-                   mergeParameters.Worksheet.Elements<SheetData>().First());
+                    mergeParameters.Worksheet.InsertAfter(mergeCells,
+                    mergeParameters.Worksheet.Elements<SheetData>().First());
                 }
             }
             MergeCell mergeCell = new MergeCell()
@@ -368,6 +368,115 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 Reference = new StringValue(mergeParameters.Merge)
             };
             mergeCells.Append(mergeCell);
+        }
+
+        public static void CreateDocStoreHouse(ExcelInfoStoreHouse info)
+        {
+            using (SpreadsheetDocument spreadsheetDocument =
+                SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = spreadsheetDocument.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                CreateStyles(workbookPart);
+
+                SharedStringTablePart sharedStringPart = spreadsheetDocument.WorkbookPart
+                    .GetPartsOfType<SharedStringTablePart>().Count() > 0
+                    ?
+                    spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
+                    :
+                    spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+
+                if (sharedStringPart.SharedStringTable == null)
+                {
+                    sharedStringPart.SharedStringTable = new SharedStringTable();
+                }
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+                Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild(new Sheets());
+                Sheet sheet = new Sheet
+                {
+                    Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart),
+                    SheetId = 1,
+                    Name = "Лист"
+                };
+                sheets.Append(sheet);
+
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = sharedStringPart,
+                    ColumnName = "A",
+                    RowIndex = 1,
+                    Text = info.Title,
+                    StyleIndex = 2U
+                });
+
+                MergeCells(new ExcelMergeParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    CellFromName = "A1",
+                    CellToName = "C1"
+                });
+
+                uint rowIndex = 2;
+
+                foreach (var storeHouseMaterial in info.StoreHouseMaterials)
+                {
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = sharedStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = storeHouseMaterial.StoreHouseName,
+                        StyleIndex = 0U
+                    });
+
+                    rowIndex++;
+
+                    foreach (var material in storeHouseMaterial.Materials)
+                    {
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = sharedStringPart,
+                            ColumnName = "B",
+                            RowIndex = rowIndex,
+                            Text = material.Item1,
+                            StyleIndex = 1U
+                        });
+
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = sharedStringPart,
+                            ColumnName = "C",
+                            RowIndex = rowIndex,
+                            Text = material.Item2.ToString(),
+                            StyleIndex = 1U
+                        });
+
+                        rowIndex++;
+                    }
+
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = sharedStringPart,
+                        ColumnName = "C",
+                        RowIndex = rowIndex,
+                        Text = storeHouseMaterial.TotalCount.ToString(),
+                        StyleIndex = 0U
+                    });
+
+                    rowIndex++;
+                }
+
+                workbookPart.Workbook.Save();
+            }
         }
     }
 }

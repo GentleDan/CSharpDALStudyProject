@@ -14,17 +14,19 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
         private readonly IMaterialStorage _materialStorage;
         private readonly IReinforcedStorage _reinforcedStorage;
         private readonly IOrderStorage _orderStorage;
-        public ReportLogic(IReinforcedStorage reinforcedStorage, IMaterialStorage materialStorage, IOrderStorage orderStorage)
+        private readonly IStoreHouseStorage _storeHouseStorage;
+        public ReportLogic(IReinforcedStorage reinforcedStorage, IMaterialStorage materialStorage, IOrderStorage orderStorage, IStoreHouseStorage storeHouseStorage)
         {
             _reinforcedStorage = reinforcedStorage;
             _materialStorage = materialStorage;
             _orderStorage = orderStorage;
+            _storeHouseStorage = storeHouseStorage;
         }
-/// <summary>
-/// Получение списка компонент с указанием, в каких изделиях используются
-/// </summary>
-/// <returns></returns>
-    public List<ReportReinforcedMaterialViewModel> GetReinforcedMaterials()
+        /// <summary>
+        /// Получение списка компонент с указанием, в каких изделиях используются
+        /// </summary>
+        /// <returns></returns>
+        public List<ReportReinforcedMaterialViewModel> GetReinforcedMaterials()
         {
             var materials = _materialStorage.GetFullList();
             var reinforceds = _reinforcedStorage.GetFullList();
@@ -72,6 +74,47 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             })
            .ToList();
         }
+
+        public List<ReportStoreHouseMaterialViewModel> GetStoreHouseMaterials()
+        {
+            var materials = _materialStorage.GetFullList();
+            var storeHouses = _storeHouseStorage.GetFullList();
+            var records = new List<ReportStoreHouseMaterialViewModel>();
+            foreach (var storeHouse in storeHouses)
+            {
+                var record = new ReportStoreHouseMaterialViewModel
+                {
+                    StoreHouseName = storeHouse.StoreHouseName,
+                    Materials = new List<Tuple<string, int>>(),
+                    TotalCount = 0
+                };
+                foreach (var material in materials)
+                {
+                    if (storeHouse.StoreHouseMaterials.ContainsKey(material.Id))
+                    {
+                        record.Materials.Add(new Tuple<string, int>(
+                            material.MaterialName, storeHouse.StoreHouseMaterials[material.Id].Item2));
+
+                        record.TotalCount += storeHouse.StoreHouseMaterials[material.Id].Item2;
+                    }
+                }
+                records.Add(record);
+            }
+            return records;
+        }
+
+        public List<ReportOrdersForAllDatesViewModel> GetOrdersForAllDates()
+        {
+            return _orderStorage.GetFullList()
+                .GroupBy(order => order.DateCreate.ToShortDateString())
+                .Select(rec => new ReportOrdersForAllDatesViewModel
+                {
+                    Date = Convert.ToDateTime(rec.Key),
+                    Count = rec.Count(),
+                    Sum = rec.Sum(order => order.Sum)
+                })
+                .ToList();
+        }
         /// <summary>
         /// Сохранение изделий в файл-Word
         /// </summary>
@@ -111,6 +154,36 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
                 Orders = GetOrders(model)
+            });
+        }
+
+        public void SaveStoreHousesToWordFile(ReportBindingModel model)
+        {
+            SaveToWord.CreateDocStoreHouse(new WordInfoStoreHouse
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                StoreHouses = _storeHouseStorage.GetFullList()
+            });
+        }
+
+        public void SaveStoreHouseMaterialsToExcelFile(ReportBindingModel model)
+        {
+            SaveToExcel.CreateDocStoreHouse(new ExcelInfoStoreHouse
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                StoreHouseMaterials = GetStoreHouseMaterials()
+            });
+        }
+
+        public void SaveOrdersForAllDatesToPdfFile(ReportBindingModel model)
+        {
+            SaveToPdf.CreateDocOrdersForAllDates(new PdfInfoOrdersForAllDates
+            {
+                FileName = model.FileName,
+                Title = "Список заказов",
+                Orders = GetOrdersForAllDates()
             });
         }
     }
