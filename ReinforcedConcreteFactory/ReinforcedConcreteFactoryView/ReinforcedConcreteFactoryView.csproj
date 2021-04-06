@@ -214,11 +214,41 @@
     <Compile Include="FormReportOrders.Designer.cs">
       <DependentUpon>FormReportOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportOrdersForAllDates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportOrdersForAllDates.Designer.cs">
+      <DependentUpon>FormReportOrdersForAllDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReportReinforcedMaterials.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormReportReinforcedMaterials.Designer.cs">
       <DependentUpon>FormReportReinforcedMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportStoreHouseMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportStoreHouseMaterials.Designer.cs">
+      <DependentUpon>FormReportStoreHouseMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreHouseRefill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreHouseRefill.Designer.cs">
+      <DependentUpon>FormStoreHouseRefill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreHouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreHouses.Designer.cs">
+      <DependentUpon>FormStoreHouses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreHouse.Designer.cs">
+      <DependentUpon>FormStoreHouse.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReinforceds.cs">
       <SubType>Form</SubType>
@@ -268,8 +298,20 @@
     <EmbeddedResource Include="FormReportOrders.resx">
       <DependentUpon>FormReportOrders.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportOrdersForAllDates.resx">
+      <DependentUpon>FormReportOrdersForAllDates.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportReinforcedMaterials.resx">
       <DependentUpon>FormReportReinforcedMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportStoreHouseMaterials.resx">
+      <DependentUpon>FormReportStoreHouseMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreHouseRefill.resx">
+      <DependentUpon>FormStoreHouseRefill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreHouse.resx">
+      <DependentUpon>FormStoreHouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -292,6 +334,9 @@
     <EmbeddedResource Include="FormReinforceds.resx">
       <DependentUpon>FormReinforceds.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreHouses.resx">
+      <DependentUpon>FormStoreHouses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -302,7 +347,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ReportOrders.rdlc" />
+    <EmbeddedResource Include="ReportOrdersForAllDates.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ReinforcedConcreteFactoryBusinessLogic.ViewModels.ReportOrdersForAllDatesViewModel.datasource" />
     <None Include="Properties\DataSources\ReinforcedConcreteFactoryBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

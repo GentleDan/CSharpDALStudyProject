@@ -7,7 +7,7 @@ using Unity;
 
 namespace ReinforcedConcreteFactoryView
 {
-    public partial class FormReinforceds : System.Windows.Forms.Form
+    public partial class FormReinforceds : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }

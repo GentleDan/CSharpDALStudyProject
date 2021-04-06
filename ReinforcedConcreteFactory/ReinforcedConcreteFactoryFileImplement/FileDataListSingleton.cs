@@ -2,6 +2,7 @@
 using ReinforcedConcreteFactoryFileImplement.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -15,14 +16,19 @@ namespace ReinforcedConcreteFactoryFileImplement
         private readonly string MaterialFileName = "Material.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string ReinforcedFileName = "Reinforced.xml";
+        private readonly string StoreHouseFileName = "StoreHouse.xml";
+
         public List<Material> Materials { get; set; }
         public List<Order> Orders { get; set; }
         public List<Reinforced> Reinforceds { get; set; }
+        public List<StoreHouse> StoreHouses { get; set; }
+
         private FileDataListSingleton()
         {
             Materials = LoadMaterials();
             Orders = LoadOrders();
             Reinforceds = LoadReinforceds();
+            StoreHouses = LoadStoreHouses();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -37,6 +43,7 @@ namespace ReinforcedConcreteFactoryFileImplement
             SaveMaterials();
             SaveOrders();
             SaveReinforceds();
+            SaveStoreHouses();
         }
         private List<Material> LoadMaterials()
         {
@@ -77,6 +84,39 @@ namespace ReinforcedConcreteFactoryFileImplement
                     });
                 }
             }
+            return list;
+        }
+
+        private List<StoreHouse> LoadStoreHouses()
+        {
+            var list = new List<StoreHouse>();
+
+            if (File.Exists(StoreHouseFileName))
+            {
+                XDocument xDocument = XDocument.Load(StoreHouseFileName);
+
+                var xElements = xDocument.Root.Elements("StoreHouse").ToList();
+
+                foreach (var storehouse in xElements)
+                {
+                    var sorehouseMaterials = new Dictionary<int, int>();
+
+                    foreach (var material in storehouse.Element("StoreHouseMaterials").Elements("StoreHouseMaterial").ToList())
+                    {
+                        sorehouseMaterials.Add(Convert.ToInt32(material.Element("Key").Value), Convert.ToInt32(material.Element("Value").Value));
+                    }
+
+                    list.Add(new StoreHouse
+                    {
+                        Id = Convert.ToInt32(storehouse.Attribute("Id").Value),
+                        StoreHouseName = storehouse.Element("StoreHouseName").Value,
+                        NameOfResponsiblePerson = storehouse.Element("NameOfResponsiblePerson").Value,
+                        DateCreate = Convert.ToDateTime(storehouse.Element("DateCreate").Value),
+                        StoreHouseMaterials = sorehouseMaterials
+                    });
+                }
+            }
+
             return list;
         }
         private List<Reinforced> LoadReinforceds()
@@ -165,6 +205,35 @@ namespace ReinforcedConcreteFactoryFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ReinforcedFileName);
+            }
+        }
+        private void SaveStoreHouses()
+        {
+            if (StoreHouses != null)
+            {
+                var xElement = new XElement("StoreHouses");
+
+                foreach (var storehouse in StoreHouses)
+                {
+                    var materialElement = new XElement("StoreHouseMaterials");
+
+                    foreach (var material in storehouse.StoreHouseMaterials)
+                    {
+                        materialElement.Add(new XElement("StoreHouseMaterial",
+                            new XElement("Key", material.Key),
+                            new XElement("Value", material.Value)));
+                    }
+
+                    xElement.Add(new XElement("StoreHouse",
+                        new XAttribute("Id", storehouse.Id),
+                        new XElement("StoreHouseName", storehouse.StoreHouseName),
+                        new XElement("NameOfResponsiblePerson", storehouse.NameOfResponsiblePerson),
+                        new XElement("DateCreate", storehouse.DateCreate.ToString()),
+                        materialElement));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(StoreHouseFileName);
             }
         }
     }

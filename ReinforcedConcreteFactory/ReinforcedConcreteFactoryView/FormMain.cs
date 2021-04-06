@@ -156,5 +156,45 @@ namespace ReinforcedConcreteFactoryView
             var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
+
+        private void storehousesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormStoreHouses form = Container.Resolve<FormStoreHouses>();
+            form.ShowDialog();
+        }
+
+        private void storehouseRefillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormStoreHouseRefill form = Container.Resolve<FormStoreHouseRefill>();
+            form.ShowDialog();
+        }
+
+        private void storeHousesListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _report.SaveStoreHousesToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void storeHouseMaterialsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportStoreHouseMaterials>();
+            form.ShowDialog();
+        }
+
+        private void ordersForAllDatesListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrdersForAllDates>();
+            form.ShowDialog();
+        }
     }
 }

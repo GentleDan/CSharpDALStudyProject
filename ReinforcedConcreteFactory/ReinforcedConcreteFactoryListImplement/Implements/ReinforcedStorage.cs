@@ -149,6 +149,5 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                 ReinforcedMaterial = reinforcedMaterials
             };
         }
-
     }
 }
