@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.reportPanel = new System.Windows.Forms.Panel();
-            this.createOrdersListButton = new System.Windows.Forms.Button();
             this.saveToPdfButton = new System.Windows.Forms.Button();
+            this.createOrdersListButton = new System.Windows.Forms.Button();
             this.OrdersReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ReportOrdersForAllDatesViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForAllDatesViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportPanel
@@ -44,16 +47,6 @@
             this.reportPanel.Size = new System.Drawing.Size(740, 45);
             this.reportPanel.TabIndex = 0;
             // 
-            // createOrdersListButton
-            // 
-            this.createOrdersListButton.Location = new System.Drawing.Point(4, 4);
-            this.createOrdersListButton.Name = "createOrdersListButton";
-            this.createOrdersListButton.Size = new System.Drawing.Size(130, 38);
-            this.createOrdersListButton.TabIndex = 0;
-            this.createOrdersListButton.Text = "Сформировать";
-            this.createOrdersListButton.UseVisualStyleBackColor = true;
-            this.createOrdersListButton.Click += new System.EventHandler(this.createOrdersListButton_Click);
-            // 
             // saveToPdfButton
             // 
             this.saveToPdfButton.Location = new System.Drawing.Point(574, 4);
@@ -64,13 +57,28 @@
             this.saveToPdfButton.UseVisualStyleBackColor = true;
             this.saveToPdfButton.Click += new System.EventHandler(this.saveToPdfButton_Click);
             // 
+            // createOrdersListButton
+            // 
+            this.createOrdersListButton.Location = new System.Drawing.Point(4, 4);
+            this.createOrdersListButton.Name = "createOrdersListButton";
+            this.createOrdersListButton.Size = new System.Drawing.Size(130, 38);
+            this.createOrdersListButton.TabIndex = 0;
+            this.createOrdersListButton.Text = "Сформировать";
+            this.createOrdersListButton.UseVisualStyleBackColor = true;
+            this.createOrdersListButton.Click += new System.EventHandler(this.createOrdersListButton_Click);
+            // 
             // OrdersReportViewer
             // 
+            this.OrdersReportViewer.LocalReport.ReportEmbeddedResource = "ReinforcedConcreteFactoryView.ReportOrdersForAllDates.rdlc";
             this.OrdersReportViewer.Location = new System.Drawing.Point(16, 65);
             this.OrdersReportViewer.Name = "OrdersReportViewer";
             this.OrdersReportViewer.ServerReport.BearerToken = null;
             this.OrdersReportViewer.Size = new System.Drawing.Size(736, 360);
             this.OrdersReportViewer.TabIndex = 1;
+            // 
+            // ReportOrdersForAllDatesViewModelBindingSource
+            // 
+            this.ReportOrdersForAllDatesViewModelBindingSource.DataMember = "ReportOrdersForAllDatesViewModel";
             // 
             // FormReportOrdersForAllDates
             // 
@@ -81,7 +89,9 @@
             this.Controls.Add(this.reportPanel);
             this.Name = "FormReportOrdersForAllDates";
             this.Text = "FormReportOrdersForAllDates";
+            this.Load += new System.EventHandler(this.FormReportOrdersForAllDates_Load);
             this.reportPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForAllDatesViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -92,5 +102,6 @@
         private System.Windows.Forms.Button saveToPdfButton;
         private System.Windows.Forms.Button createOrdersListButton;
         private Microsoft.Reporting.WinForms.ReportViewer OrdersReportViewer;
+        private System.Windows.Forms.BindingSource ReportOrdersForAllDatesViewModelBindingSource;
     }
 }

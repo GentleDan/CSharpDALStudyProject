@@ -35,40 +35,40 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Tablix Name="Tablix2">
+      <Tablix Name="Tablix1">
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.40181cm</Width>
+              <Width>4.97847cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.40181cm</Width>
+              <Width>4.97847cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.40181cm</Width>
+              <Width>4.97847cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>1.26146cm</Height>
+              <Height>1.75094cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox8">
+                    <Textbox Name="Textbox2">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Дата </Value>
+                              <Value>Дата</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -84,21 +84,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox10">
+                    <Textbox Name="Textbox4">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Количество заказов</Value>
+                              <Value>Количество </Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox10</rd:DefaultName>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -114,21 +114,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox12">
+                    <Textbox Name="Textbox6">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Сумма по заказам</Value>
+                              <Value>Общая сумма</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
+                      <rd:DefaultName>Textbox6</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -145,7 +145,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>1.26146cm</Height>
+              <Height>1.75094cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -258,11 +258,11 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSetOrdersForAllDates</DataSetName>
-        <Top>2.43099cm</Top>
-        <Left>2.00766cm</Left>
-        <Height>2.52292cm</Height>
-        <Width>16.20542cm</Width>
+        <DataSetName>DataSetOrderDate</DataSetName>
+        <Top>2.35162cm</Top>
+        <Left>2.64266cm</Left>
+        <Height>3.50188cm</Height>
+        <Width>14.93542cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -294,11 +294,25 @@
       </ConnectionProperties>
       <rd:DataSourceID>db6ce918-4a9f-418f-a0ca-83f8ce164cba</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="ReinforcedConcreteFactoryBusinessLogicViewModels1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>41fef8d6-c199-46e3-8c49-e7aad3728f55</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="ReinforcedConcreteFactoryBusinessLogicViewModels2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>0f53323d-ab34-4c40-bf43-d085e1f22008</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSetOrdersForAllDates">
+    <DataSet Name="DataSetOrderDate">
       <Query>
-        <DataSourceName>ReinforcedConcreteFactoryBusinessLogicViewModels</DataSourceName>
+        <DataSourceName>ReinforcedConcreteFactoryBusinessLogicViewModels2</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>

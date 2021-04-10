@@ -24,7 +24,7 @@ namespace ReinforcedConcreteFactoryView
             {
                 var dataSource = logic.GetOrdersForAllDates();
 
-                ReportDataSource source = new ReportDataSource("DataSetOrdersForAllDates", dataSource);
+                ReportDataSource source = new ReportDataSource("DataSetOrderDate", dataSource);
                 OrdersReportViewer.LocalReport.DataSources.Add(source);
                 OrdersReportViewer.RefreshReport();
             }
@@ -56,6 +56,11 @@ namespace ReinforcedConcreteFactoryView
                     }
                 }
             }
+        }
+
+        private void FormReportOrdersForAllDates_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
