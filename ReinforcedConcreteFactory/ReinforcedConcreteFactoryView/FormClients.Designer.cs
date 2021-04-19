@@ -42,6 +42,7 @@
             this.ClientsDataGridView.Location = new System.Drawing.Point(3, 2);
             this.ClientsDataGridView.Name = "ClientsDataGridView";
             this.ClientsDataGridView.RowHeadersVisible = false;
+            this.ClientsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ClientsDataGridView.Size = new System.Drawing.Size(380, 454);
             this.ClientsDataGridView.TabIndex = 0;
             // 
