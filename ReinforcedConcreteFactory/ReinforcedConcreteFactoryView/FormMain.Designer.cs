@@ -32,17 +32,17 @@
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataOrderFactoryGridView = new System.Windows.Forms.DataGridView();
             this.createOrderButton = new System.Windows.Forms.Button();
-            this.submitExecutionButton = new System.Windows.Forms.Button();
-            this.orderReadyButton = new System.Windows.Forms.Button();
             this.orderPaidButton = new System.Windows.Forms.Button();
             this.refreshListButton = new System.Windows.Forms.Button();
-            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.implementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataOrderFactoryGridView)).BeginInit();
             this.SuspendLayout();
@@ -51,10 +51,11 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.referencesToolStripMenuItem,
-            this.отчетыToolStripMenuItem});
+            this.отчетыToolStripMenuItem,
+            this.startWorkToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1050, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -63,7 +64,8 @@
             this.referencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materialsToolStripMenuItem,
             this.reinforcedToolStripMenuItem,
-            this.clientsToolStripMenuItem});
+            this.clientsToolStripMenuItem,
+            this.implementersToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
             this.referencesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.referencesToolStripMenuItem.Text = "Справочники";
@@ -81,6 +83,13 @@
             this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reinforcedToolStripMenuItem.Text = "Изделия";
             this.reinforcedToolStripMenuItem.Click += new System.EventHandler(this.reinforcedToolStripMenuItem_Click);
+            // 
+            // clientsToolStripMenuItem
+            // 
+            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Text = "Клиенты";
+            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // отчетыToolStripMenuItem
             // 
@@ -121,42 +130,22 @@
             this.dataOrderFactoryGridView.Name = "dataOrderFactoryGridView";
             this.dataOrderFactoryGridView.RowHeadersVisible = false;
             this.dataOrderFactoryGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataOrderFactoryGridView.Size = new System.Drawing.Size(630, 424);
+            this.dataOrderFactoryGridView.Size = new System.Drawing.Size(834, 424);
             this.dataOrderFactoryGridView.TabIndex = 1;
             // 
             // createOrderButton
             // 
-            this.createOrderButton.Location = new System.Drawing.Point(653, 47);
+            this.createOrderButton.Location = new System.Drawing.Point(873, 43);
             this.createOrderButton.Name = "createOrderButton";
-            this.createOrderButton.Size = new System.Drawing.Size(109, 44);
+            this.createOrderButton.Size = new System.Drawing.Size(107, 44);
             this.createOrderButton.TabIndex = 2;
             this.createOrderButton.Text = "Создать заказ";
             this.createOrderButton.UseVisualStyleBackColor = true;
             this.createOrderButton.Click += new System.EventHandler(this.createOrderButton_Click);
             // 
-            // submitExecutionButton
-            // 
-            this.submitExecutionButton.Location = new System.Drawing.Point(653, 119);
-            this.submitExecutionButton.Name = "submitExecutionButton";
-            this.submitExecutionButton.Size = new System.Drawing.Size(109, 44);
-            this.submitExecutionButton.TabIndex = 3;
-            this.submitExecutionButton.Text = "Отдать на выполнение";
-            this.submitExecutionButton.UseVisualStyleBackColor = true;
-            this.submitExecutionButton.Click += new System.EventHandler(this.submitExecutionButton_Click);
-            // 
-            // orderReadyButton
-            // 
-            this.orderReadyButton.Location = new System.Drawing.Point(653, 196);
-            this.orderReadyButton.Name = "orderReadyButton";
-            this.orderReadyButton.Size = new System.Drawing.Size(109, 48);
-            this.orderReadyButton.TabIndex = 4;
-            this.orderReadyButton.Text = "Заказ готов";
-            this.orderReadyButton.UseVisualStyleBackColor = true;
-            this.orderReadyButton.Click += new System.EventHandler(this.orderReadyButton_Click);
-            // 
             // orderPaidButton
             // 
-            this.orderPaidButton.Location = new System.Drawing.Point(655, 275);
+            this.orderPaidButton.Location = new System.Drawing.Point(873, 273);
             this.orderPaidButton.Name = "orderPaidButton";
             this.orderPaidButton.Size = new System.Drawing.Size(107, 47);
             this.orderPaidButton.TabIndex = 5;
@@ -166,30 +155,35 @@
             // 
             // refreshListButton
             // 
-            this.refreshListButton.Location = new System.Drawing.Point(653, 356);
+            this.refreshListButton.Location = new System.Drawing.Point(873, 358);
             this.refreshListButton.Name = "refreshListButton";
-            this.refreshListButton.Size = new System.Drawing.Size(109, 44);
+            this.refreshListButton.Size = new System.Drawing.Size(107, 47);
             this.refreshListButton.TabIndex = 6;
             this.refreshListButton.Text = "Обновить список";
             this.refreshListButton.UseVisualStyleBackColor = true;
             this.refreshListButton.Click += new System.EventHandler(this.refreshListButton_Click);
             // 
-            // clientsToolStripMenuItem
+            // startWorkToolStripMenuItem
             // 
-            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.clientsToolStripMenuItem.Text = "Клиенты";
-            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
+            this.startWorkToolStripMenuItem.Name = "startWorkToolStripMenuItem";
+            this.startWorkToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.startWorkToolStripMenuItem.Text = "Запуск работ";
+            this.startWorkToolStripMenuItem.Click += new System.EventHandler(this.startWorkToolStripMenuItem_Click);
+            // 
+            // implementersToolStripMenuItem
+            // 
+            this.implementersToolStripMenuItem.Name = "implementersToolStripMenuItem";
+            this.implementersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.implementersToolStripMenuItem.Text = "Исполнители";
+            this.implementersToolStripMenuItem.Click += new System.EventHandler(this.implementersToolStripMenuItem_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 465);
+            this.ClientSize = new System.Drawing.Size(1050, 468);
             this.Controls.Add(this.refreshListButton);
             this.Controls.Add(this.orderPaidButton);
-            this.Controls.Add(this.orderReadyButton);
-            this.Controls.Add(this.submitExecutionButton);
             this.Controls.Add(this.createOrderButton);
             this.Controls.Add(this.dataOrderFactoryGridView);
             this.Controls.Add(this.menuStrip1);
@@ -212,8 +206,6 @@
         private System.Windows.Forms.ToolStripMenuItem reinforcedToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataOrderFactoryGridView;
         private System.Windows.Forms.Button createOrderButton;
-        private System.Windows.Forms.Button submitExecutionButton;
-        private System.Windows.Forms.Button orderReadyButton;
         private System.Windows.Forms.Button orderPaidButton;
         private System.Windows.Forms.Button refreshListButton;
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
@@ -221,5 +213,7 @@
         private System.Windows.Forms.ToolStripMenuItem reinforcedMaterialsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordersListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem implementersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startWorkToolStripMenuItem;
     }
 }

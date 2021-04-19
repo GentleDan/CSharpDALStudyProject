@@ -1,4 +1,5 @@
 ﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+using ReinforcedConcreteFactoryBusinessLogic.Enums;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using ReinforcedConcreteFactoryListImplement.Models;
@@ -33,10 +34,11 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (Order order in source.Orders)
             {
-                if (((model.ClientId.HasValue && order.ClientId == model.ClientId) ||
-                !model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date) ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date
-                && order.DateCreate.Date <= model.DateTo.Value.Date))
+                if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && order.ClientId == model.ClientId)
+                    || (model.FreeOrders.HasValue && model.FreeOrders.Value && !order.ImplementerId.HasValue)
+                    || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется))
                 {
                     result.Add(CreateModel(order));
                 }
@@ -101,6 +103,7 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.ClientId = (int) model.ClientId;
+            order.ImplementerId = model.ImplementerId;
             order.ReinforcedId = model.ReinforcedId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -119,10 +122,29 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                     reinforcedName = reinforced.ReinforcedName;
                 }
             }
+            string clientFIO = null;
+            foreach (var client in source.Clients)
+            {
+                if (client.Id == order.ClientId)
+                {
+                    clientFIO = client.ClientFIO;
+                }
+            }
+            string implementerFIO = null;
+            foreach (var implementer in source.Implementers)
+            {
+                if (implementer.Id == order.ImplementerId)
+                {
+                    implementerFIO = implementer.ImplementerFIO;
+                }
+            }
             return new OrderViewModel
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
+                ClientFIO = clientFIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = implementerFIO,
                 ReinforcedId = order.ReinforcedId,
                 ReinforcedName = reinforcedName,
                 Count = order.Count,
