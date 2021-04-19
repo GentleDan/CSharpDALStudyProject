@@ -19,28 +19,6 @@ namespace ReinforcedConcreteFactoryView
             this.logic = logic;
         }
 
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormClient>();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                LoadData();
-            }
-        }
-
-        private void updateButton_Click(object sender, EventArgs e)
-        {
-            if (ClientsDataGridView.SelectedRows.Count == 1)
-            {
-                var form = Container.Resolve<FormClient>();
-                form.Id = Convert.ToInt32(ClientsDataGridView.SelectedRows[0].Cells[0].Value);
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    LoadData();
-                }
-            }
-        }
-
         private void deleteButton_Click(object sender, EventArgs e)
         {
             if (ClientsDataGridView.SelectedRows.Count == 1)
@@ -62,11 +40,6 @@ namespace ReinforcedConcreteFactoryView
                     LoadData();
                 }
             }
-        }
-
-        private void refreshButton_Click(object sender, EventArgs e)
-        {
-            LoadData();
         }
 
         private void FormClients_Load(object sender, EventArgs e)

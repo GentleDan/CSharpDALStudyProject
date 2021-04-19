@@ -15,7 +15,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
         {
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                return context.Orders.Include(rec => rec.Reinforced)
+                return context.Orders.Include(rec => rec.Reinforced).Include(rec => rec.Client)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
@@ -40,7 +40,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             }
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                return context.Orders.Include(rec => rec.Reinforced)
+                return context.Orders.Include(rec => rec.Reinforced).Include(rec => rec.Client)
                 .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date 
                 >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
@@ -69,7 +69,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             }
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                Order order = context.Orders.Include(rec => rec.Reinforced)
+                Order order = context.Orders.Include(rec => rec.Reinforced).Include(rec => rec.Client)
                 .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
