@@ -119,10 +119,19 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                     reinforcedName = reinforced.ReinforcedName;
                 }
             }
+            string clientFIO = null;
+            foreach (Client client in source.Clients)
+            {
+                if (client.Id == order.ClientId)
+                {
+                    clientFIO = client.ClientFIO;
+                }
+            }
             return new OrderViewModel
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
+                ClientFIO = clientFIO,
                 ReinforcedId = order.ReinforcedId,
                 ReinforcedName = reinforcedName,
                 Count = order.Count,

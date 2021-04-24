@@ -30,6 +30,7 @@
         {
             this.ClientsDataGridView = new System.Windows.Forms.DataGridView();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.buttonRef = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ClientsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(409, 210);
+            this.deleteButton.Location = new System.Drawing.Point(405, 129);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(132, 63);
             this.deleteButton.TabIndex = 3;
@@ -56,11 +57,22 @@
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
+            // buttonRef
+            // 
+            this.buttonRef.Location = new System.Drawing.Point(405, 224);
+            this.buttonRef.Name = "buttonRef";
+            this.buttonRef.Size = new System.Drawing.Size(132, 63);
+            this.buttonRef.TabIndex = 4;
+            this.buttonRef.Text = "Обновить";
+            this.buttonRef.UseVisualStyleBackColor = true;
+            this.buttonRef.Click += new System.EventHandler(this.buttonRef_Click);
+            // 
             // FormClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 478);
+            this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.ClientsDataGridView);
             this.Name = "FormClients";
@@ -75,5 +87,6 @@
 
         private System.Windows.Forms.DataGridView ClientsDataGridView;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button buttonRef;
     }
 }

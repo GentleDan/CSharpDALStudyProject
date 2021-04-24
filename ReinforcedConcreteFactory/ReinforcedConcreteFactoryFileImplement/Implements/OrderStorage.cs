@@ -79,25 +79,18 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
         }
         private OrderViewModel CreateModel(Order order)
         {
-            string reinforcedName = null;
-            foreach (Reinforced set in source.Reinforceds)
-            {
-                if (set.Id == order.ReinforcedId)
-                {
-                    reinforcedName = set.ReinforcedName;
-                }
-            }
             return new OrderViewModel
             {
                 Id = order.Id,
-                ClientId = order.ClientId,
                 ReinforcedId = order.ReinforcedId,
                 ReinforcedName = source.Reinforceds.FirstOrDefault(x => x.Id == order.ReinforcedId)?.ReinforcedName,
                 Count = order.Count,
                 Sum = order.Sum,
-                DateCreate = order.DateCreate,
                 Status = order.Status,
-                DateImplement = order.DateImplement
+                DateCreate = order.DateCreate,
+                DateImplement = order.DateImplement,
+                ClientId = order.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(x => x.Id == order.ClientId)?.ClientFIO
             };
         }
     }

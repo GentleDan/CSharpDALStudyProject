@@ -92,19 +92,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
         {
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                Order order = new Order
-                {
-                    ClientId = (int) model.ClientId,
-                    ReinforcedId = model.ReinforcedId,
-                    Count = model.Count,
-                    Sum = model.Sum,
-                    Status = model.Status,
-                    DateCreate = model.DateCreate,
-                    DateImplement = model.DateImplement,
-                };
-                context.Orders.Add(order);
-                context.SaveChanges();
-                CreateModel(model, order);
+                context.Orders.Add(CreateModel(model, new Order()));
                 context.SaveChanges();
             }
         }
@@ -112,19 +100,12 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
         {
             using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
             {
-                Order element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-                if (element == null)
+                var order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                if (order == null)
                 {
-                    throw new Exception("Элемент не найден");
+                    throw new Exception("Заказ не найден");
                 }
-                element.ClientId = (int) model.ClientId;
-                element.ReinforcedId = model.ReinforcedId;
-                element.Count = model.Count;
-                element.Sum = model.Sum;
-                element.Status = model.Status;
-                element.DateCreate = model.DateCreate;
-                element.DateImplement = model.DateImplement;
-                CreateModel(model, element);
+                CreateModel(model, order);
                 context.SaveChanges();
             }
         }
@@ -146,29 +127,13 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
-            if (model == null)
-            {
-                return null;
-            }
-
-            using (ReinforcedConcreteFactoryDatabase context = new ReinforcedConcreteFactoryDatabase())
-            {
-                Reinforced element = context.Reinforceds.FirstOrDefault(rec => rec.Id == model.ReinforcedId);
-                if (element != null)
-                {
-                    if (element.Orders == null)
-                    {
-                        element.Orders = new List<Order>();
-                    }
-                    element.Orders.Add(order);
-                    context.Reinforceds.Update(element);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Элемент не найден");
-                }
-            }
+            order.ClientId = (int)model.ClientId;
+            order.ReinforcedId = model.ReinforcedId;
+            order.Count = model.Count;
+            order.Sum = model.Sum;
+            order.Status = model.Status;
+            order.DateCreate = model.DateCreate;
+            order.DateImplement = model.DateImplement;
             return order;
         }
     }
