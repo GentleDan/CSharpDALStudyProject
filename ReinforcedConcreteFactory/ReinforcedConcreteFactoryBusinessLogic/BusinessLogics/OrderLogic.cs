@@ -59,7 +59,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 {
                     Id = order.Id,
                     ClientId = order.ClientId,
-                    ImplementerId = order.ImplementerId,
+                    ImplementerId = model.ImplementerId,
                     ReinforcedId = order.ReinforcedId,
                     Count = order.Count,
                     Sum = order.Sum,
