@@ -33,16 +33,17 @@
             this.materialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.implementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reinforcedMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataOrderFactoryGridView = new System.Windows.Forms.DataGridView();
             this.createOrderButton = new System.Windows.Forms.Button();
             this.orderPaidButton = new System.Windows.Forms.Button();
             this.refreshListButton = new System.Windows.Forms.Button();
-            this.startWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.implementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataOrderFactoryGridView)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.referencesToolStripMenuItem,
             this.отчетыToolStripMenuItem,
-            this.startWorkToolStripMenuItem});
+            this.startWorkToolStripMenuItem,
+            this.mailToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1050, 24);
@@ -73,23 +75,30 @@
             // materialsToolStripMenuItem
             // 
             this.materialsToolStripMenuItem.Name = "materialsToolStripMenuItem";
-            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.materialsToolStripMenuItem.Text = "Материалы";
             this.materialsToolStripMenuItem.Click += new System.EventHandler(this.materialsToolStripMenuItem_Click);
             // 
             // reinforcedToolStripMenuItem
             // 
             this.reinforcedToolStripMenuItem.Name = "reinforcedToolStripMenuItem";
-            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.reinforcedToolStripMenuItem.Text = "Изделия";
             this.reinforcedToolStripMenuItem.Click += new System.EventHandler(this.reinforcedToolStripMenuItem_Click);
             // 
             // clientsToolStripMenuItem
             // 
             this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.clientsToolStripMenuItem.Text = "Клиенты";
             this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
+            // 
+            // implementersToolStripMenuItem
+            // 
+            this.implementersToolStripMenuItem.Name = "implementersToolStripMenuItem";
+            this.implementersToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.implementersToolStripMenuItem.Text = "Исполнители";
+            this.implementersToolStripMenuItem.Click += new System.EventHandler(this.implementersToolStripMenuItem_Click);
             // 
             // отчетыToolStripMenuItem
             // 
@@ -121,6 +130,13 @@
             this.ordersListToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.ordersListToolStripMenuItem.Text = "Список заказов";
             this.ordersListToolStripMenuItem.Click += new System.EventHandler(this.ordersListToolStripMenuItem_Click);
+            // 
+            // startWorkToolStripMenuItem
+            // 
+            this.startWorkToolStripMenuItem.Name = "startWorkToolStripMenuItem";
+            this.startWorkToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.startWorkToolStripMenuItem.Text = "Запуск работ";
+            this.startWorkToolStripMenuItem.Click += new System.EventHandler(this.startWorkToolStripMenuItem_Click);
             // 
             // dataOrderFactoryGridView
             // 
@@ -163,19 +179,12 @@
             this.refreshListButton.UseVisualStyleBackColor = true;
             this.refreshListButton.Click += new System.EventHandler(this.refreshListButton_Click);
             // 
-            // startWorkToolStripMenuItem
+            // mailToolStripMenuItem
             // 
-            this.startWorkToolStripMenuItem.Name = "startWorkToolStripMenuItem";
-            this.startWorkToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
-            this.startWorkToolStripMenuItem.Text = "Запуск работ";
-            this.startWorkToolStripMenuItem.Click += new System.EventHandler(this.startWorkToolStripMenuItem_Click);
-            // 
-            // implementersToolStripMenuItem
-            // 
-            this.implementersToolStripMenuItem.Name = "implementersToolStripMenuItem";
-            this.implementersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.implementersToolStripMenuItem.Text = "Исполнители";
-            this.implementersToolStripMenuItem.Click += new System.EventHandler(this.implementersToolStripMenuItem_Click);
+            this.mailToolStripMenuItem.Name = "mailToolStripMenuItem";
+            this.mailToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.mailToolStripMenuItem.Text = "Письма";
+            this.mailToolStripMenuItem.Click += new System.EventHandler(this.mailToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -215,5 +224,6 @@
         private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem implementersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startWorkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mailToolStripMenuItem;
     }
 }
