@@ -25,7 +25,10 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             {
                 return null;
             }
-            return source.Orders.Where((rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)).Select(CreateModel).ToList();
+            return source.Orders.Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue &&
+            rec.DateCreate.Date == model.DateCreate.Date) || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date
+            >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+            (model.ClientId.HasValue && rec.ClientId == model.ClientId)).Select(CreateModel).ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -65,6 +68,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
+            order.ClientId = (int) model.ClientId;
             order.ReinforcedId = model.ReinforcedId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -75,14 +79,6 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
         }
         private OrderViewModel CreateModel(Order order)
         {
-            string reinforcedName = null;
-            foreach (Reinforced set in source.Reinforceds)
-            {
-                if (set.Id == order.ReinforcedId)
-                {
-                    reinforcedName = set.ReinforcedName;
-                }
-            }
             return new OrderViewModel
             {
                 Id = order.Id,
@@ -90,9 +86,11 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
                 ReinforcedName = source.Reinforceds.FirstOrDefault(x => x.Id == order.ReinforcedId)?.ReinforcedName,
                 Count = order.Count,
                 Sum = order.Sum,
-                DateCreate = order.DateCreate,
                 Status = order.Status,
-                DateImplement = order.DateImplement
+                DateCreate = order.DateCreate,
+                DateImplement = order.DateImplement,
+                ClientId = order.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(x => x.Id == order.ClientId)?.ClientFIO
             };
         }
     }

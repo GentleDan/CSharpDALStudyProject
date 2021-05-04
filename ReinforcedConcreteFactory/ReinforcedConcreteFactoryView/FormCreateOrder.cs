@@ -15,11 +15,13 @@ namespace ReinforcedConcreteFactoryView
         public new IUnityContainer Container { get; set; }
         private readonly ReinforcedLogic _logicR;
         private readonly OrderLogic _logicO;
-        public FormCreateOrder(ReinforcedLogic logicR, OrderLogic logicO)
+        private readonly ClientLogic _logicC;
+        public FormCreateOrder(ReinforcedLogic logicR, OrderLogic logicO, ClientLogic logicC)
         {
             InitializeComponent();
             _logicR = logicR;
             _logicO = logicO;
+            _logicC = logicC;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
@@ -33,6 +35,14 @@ namespace ReinforcedConcreteFactoryView
                     orderReinforcedComboBox.ValueMember = "Id";
                     orderReinforcedComboBox.DataSource = listR;
                     orderReinforcedComboBox.SelectedItem = null;
+                }
+                var listClients = _logicC.Read(null);
+                foreach (var client in listClients)
+                {
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -89,6 +99,7 @@ namespace ReinforcedConcreteFactoryView
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     ReinforcedId = Convert.ToInt32(orderReinforcedComboBox.SelectedValue),
                     Count = Convert.ToInt32(orderReinforcedCountTextBox.Text),
                     Sum = Convert.ToDecimal(orderSumTextBox.Text)

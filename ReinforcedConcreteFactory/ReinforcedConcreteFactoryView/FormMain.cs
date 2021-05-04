@@ -33,6 +33,7 @@ namespace ReinforcedConcreteFactoryView
                     dataOrderFactoryGridView.DataSource = list;
                     dataOrderFactoryGridView.Columns[0].Visible = false;
                     dataOrderFactoryGridView.Columns[1].Visible = false;
+                    dataOrderFactoryGridView.Columns[2].Visible = false;
                     dataOrderFactoryGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
@@ -131,7 +132,7 @@ namespace ReinforcedConcreteFactoryView
 
         private void reinforcedListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            using (SaveFileDialog dialog = new SaveFileDialog { Filter = "docx|*.docx" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -147,13 +148,13 @@ namespace ReinforcedConcreteFactoryView
 
         private void reinforcedMaterialsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormReportReinforcedMaterials>();
+            FormReportReinforcedMaterials form = Container.Resolve<FormReportReinforcedMaterials>();
             form.ShowDialog();
         }
 
         private void ordersListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormReportOrders>();
+            FormReportOrders form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
 
@@ -171,7 +172,7 @@ namespace ReinforcedConcreteFactoryView
 
         private void storeHousesListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            using (SaveFileDialog dialog = new SaveFileDialog { Filter = "docx|*.docx" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -187,13 +188,18 @@ namespace ReinforcedConcreteFactoryView
 
         private void storeHouseMaterialsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormReportStoreHouseMaterials>();
+            FormReportStoreHouseMaterials form = Container.Resolve<FormReportStoreHouseMaterials>();
             form.ShowDialog();
         }
 
         private void ordersForAllDatesListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormReportOrdersForAllDates>();
+            FormReportOrdersForAllDates form = Container.Resolve<FormReportOrdersForAllDates>();
+            form.ShowDialog();
+        }
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormClients form = Container.Resolve<FormClients>();
             form.ShowDialog();
         }
     }

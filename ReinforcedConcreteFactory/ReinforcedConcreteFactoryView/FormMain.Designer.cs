@@ -47,6 +47,7 @@
             this.storeHousesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storeHouseMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersForAllDatesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataOrderFactoryGridView)).BeginInit();
             this.SuspendLayout();
@@ -68,22 +69,24 @@
             this.referencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materialsToolStripMenuItem,
             this.reinforcedToolStripMenuItem,
-            this.storehousesToolStripMenuItem});
+            this.storehousesToolStripMenuItem,
+            this.clientsToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
             this.referencesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.referencesToolStripMenuItem.Text = "Справочники";
+
             // 
             // materialsToolStripMenuItem
             // 
             this.materialsToolStripMenuItem.Name = "materialsToolStripMenuItem";
-            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.materialsToolStripMenuItem.Text = "Материалы";
             this.materialsToolStripMenuItem.Click += new System.EventHandler(this.materialsToolStripMenuItem_Click);
             // 
             // reinforcedToolStripMenuItem
             // 
             this.reinforcedToolStripMenuItem.Name = "reinforcedToolStripMenuItem";
-            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.reinforcedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reinforcedToolStripMenuItem.Text = "Изделия";
             this.reinforcedToolStripMenuItem.Click += new System.EventHandler(this.reinforcedToolStripMenuItem_Click);
             // 
@@ -216,6 +219,12 @@
             this.ordersForAllDatesListToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.ordersForAllDatesListToolStripMenuItem.Text = "Список заказов за весь период";
             this.ordersForAllDatesListToolStripMenuItem.Click += new System.EventHandler(this.ordersForAllDatesListToolStripMenuItem_Click);
+            // clientsToolStripMenuItem
+            // 
+            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Text = "Клиенты";
+            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -261,5 +270,6 @@
         private System.Windows.Forms.ToolStripMenuItem storeHousesListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem storeHouseMaterialsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordersForAllDatesListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
     }
 }
