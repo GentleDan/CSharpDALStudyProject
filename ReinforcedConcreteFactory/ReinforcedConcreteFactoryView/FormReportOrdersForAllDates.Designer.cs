@@ -88,8 +88,7 @@
             this.Controls.Add(this.OrdersReportViewer);
             this.Controls.Add(this.reportPanel);
             this.Name = "FormReportOrdersForAllDates";
-            this.Text = "FormReportOrdersForAllDates";
-            this.Load += new System.EventHandler(this.FormReportOrdersForAllDates_Load);
+            this.Text = "Заказы за период";
             this.reportPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForAllDatesViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);

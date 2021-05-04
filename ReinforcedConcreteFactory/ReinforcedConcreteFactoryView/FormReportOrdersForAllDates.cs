@@ -57,10 +57,5 @@ namespace ReinforcedConcreteFactoryView
                 }
             }
         }
-
-        private void FormReportOrdersForAllDates_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
