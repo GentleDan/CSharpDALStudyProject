@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReinforcedConcreteFactoryDa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReinforcedConcreteFactoryRestApi", "ReinforcedConcreteFactoryRestApi\ReinforcedConcreteFactoryRestApi.csproj", "{8C78A8C7-6317-4597-82F6-DDBDCAEE4CE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReinforcedConcreteFactoryAppClient", "ReinforcedConcreteFactoryAppClient\ReinforcedConcreteFactoryAppClient.csproj", "{3B24FFC9-8735-4C08-8E63-F77D04118AC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReinforcedConcreteFactoryAppClient", "ReinforcedConcreteFactoryAppClient\ReinforcedConcreteFactoryAppClient.csproj", "{3B24FFC9-8735-4C08-8E63-F77D04118AC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReinforcedConcreteFactoryAppStoreHouse", "ReinforcedConcreteFactoryAppStoreHouse\ReinforcedConcreteFactoryAppStoreHouse.csproj", "{553744AB-CA1E-4E35-875C-FFC0F2F101D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{3B24FFC9-8735-4C08-8E63-F77D04118AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B24FFC9-8735-4C08-8E63-F77D04118AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B24FFC9-8735-4C08-8E63-F77D04118AC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{553744AB-CA1E-4E35-875C-FFC0F2F101D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553744AB-CA1E-4E35-875C-FFC0F2F101D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553744AB-CA1E-4E35-875C-FFC0F2F101D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553744AB-CA1E-4E35-875C-FFC0F2F101D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
