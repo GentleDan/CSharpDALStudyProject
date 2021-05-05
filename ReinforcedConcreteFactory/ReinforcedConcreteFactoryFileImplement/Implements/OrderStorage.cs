@@ -1,4 +1,5 @@
 ﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+using ReinforcedConcreteFactoryBusinessLogic.Enums;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using ReinforcedConcreteFactoryFileImplement.Models;
@@ -25,10 +26,12 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             {
                 return null;
             }
-            return source.Orders.Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue &&
-            rec.DateCreate.Date == model.DateCreate.Date) || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date
-            >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
-            (model.ClientId.HasValue && rec.ClientId == model.ClientId)).Select(CreateModel).ToList();
+            return source.Orders.Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId)
+                    || (model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue)
+                    || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+            .Select(CreateModel).ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -69,6 +72,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.ClientId = (int) model.ClientId;
+            order.ImplementerId = model.ImplementerId;
             order.ReinforcedId = model.ReinforcedId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -82,6 +86,10 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(x => x.Id == order.ClientId)?.ClientFIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = source.Implementers.FirstOrDefault(x => x.Id == order.ImplementerId)?.ImplementerFIO,
                 ReinforcedId = order.ReinforcedId,
                 ReinforcedName = source.Reinforceds.FirstOrDefault(x => x.Id == order.ReinforcedId)?.ReinforcedName,
                 Count = order.Count,

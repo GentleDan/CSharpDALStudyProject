@@ -11,6 +11,7 @@ namespace ReinforcedConcreteFactoryListImplement
         public List<Reinforced> Reinforceds { get; set; }
         public List<StoreHouse> StoreHouses { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
         private DataListSingleton()
         {
             Materials = new List<Material>();
@@ -18,6 +19,7 @@ namespace ReinforcedConcreteFactoryListImplement
             Reinforceds = new List<Reinforced>();
             StoreHouses = new List<StoreHouse>();
             Clients = new List<Client>();
+            Implementers = new List<Implementer>();
         }
         public static DataListSingleton GetInstance()
         {

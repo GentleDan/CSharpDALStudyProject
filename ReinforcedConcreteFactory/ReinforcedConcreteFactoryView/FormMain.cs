@@ -13,11 +13,13 @@ namespace ReinforcedConcreteFactoryView
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
         private readonly ReportLogic _report;
-        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic)
+        private readonly WorkModeling _workModeling;
+        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic, WorkModeling workModeling)
         {
             InitializeComponent();
             _orderLogic = orderLogic;
             _report = reportLogic;
+            _workModeling = workModeling;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -34,7 +36,8 @@ namespace ReinforcedConcreteFactoryView
                     dataOrderFactoryGridView.Columns[0].Visible = false;
                     dataOrderFactoryGridView.Columns[1].Visible = false;
                     dataOrderFactoryGridView.Columns[2].Visible = false;
-                    dataOrderFactoryGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataOrderFactoryGridView.Columns[3].Visible = false;
+                    dataOrderFactoryGridView.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -62,49 +65,6 @@ namespace ReinforcedConcreteFactoryView
             FormCreateOrder form = Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
             LoadData();
-        }
-
-        private void submitExecutionButton_Click(object sender, EventArgs e)
-        {
-            if (dataOrderFactoryGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataOrderFactoryGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel
-                    {
-                        OrderId = id
-                    });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
-                }
-            }
-
-        }
-
-        private void orderReadyButton_Click(object sender, EventArgs e)
-        {
-            if (dataOrderFactoryGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataOrderFactoryGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    _orderLogic.FinishOrder(new ChangeStatusBindingModel
-                    {
-                        OrderId = id
-                    });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
         }
 
         private void orderPaidButton_Click(object sender, EventArgs e)
@@ -200,6 +160,18 @@ namespace ReinforcedConcreteFactoryView
         private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormClients form = Container.Resolve<FormClients>();
+            form.ShowDialog();
+        }
+
+        private void startWorkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _workModeling.DoWork();
+            LoadData();
+        }
+
+        private void implementersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormImplementers>();
             form.ShowDialog();
         }
     }
