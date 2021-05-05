@@ -97,8 +97,6 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
                 Status = order.Status,
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement,
-                ClientId = order.ClientId,
-                ClientFIO = source.Clients.FirstOrDefault(x => x.Id == order.ClientId)?.ClientFIO
             };
         }
     }

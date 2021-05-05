@@ -123,7 +123,6 @@ namespace ReinforcedConcreteFactoryFileImplement
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         ReinforcedId = Convert.ToInt32(elem.Element("ReinforcedId").Value),
-                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         ImplementerId = Convert.ToInt32(elem.Element("ImplementerId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),

@@ -46,7 +46,6 @@
             this.storeHousesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storeHouseMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersForAllDatesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.implementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -72,7 +71,6 @@
             this.materialsToolStripMenuItem,
             this.reinforcedToolStripMenuItem,
             this.storehousesToolStripMenuItem,
-            this.clientsToolStripMenuItem
             this.clientsToolStripMenuItem,
             this.implementersToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";

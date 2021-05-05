@@ -243,7 +243,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     catch
                     {
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
                 }
             }

@@ -55,39 +55,35 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 {
                     throw new Exception("Не найден заказ");
                 }
-                if (order.Status != OrderStatus.Принят)
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Требуются_материалы)
                 {
-                    throw new Exception("Заказ не в статусе \"Принят\"");
+                    throw new Exception("Заказ еще не принят");
                 }
-                _orderStorage.Update(new OrderBindingModel
+ 
+                var updateBindingModel = new OrderBindingModel
                 {
                     Id = order.Id,
-                    ClientId = order.ClientId,
-                    ImplementerId = model.ImplementerId,
                     ReinforcedId = order.ReinforcedId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
-                    DateImplement = DateTime.Now,
-                    Status = OrderStatus.Выполняется
-                });
+                    ClientId = order.ClientId
+                };
+
+                if (!_storeHouseStorage.TakeFromStoreHouse(_reinforcedStorage.GetElement
+                    (new ReinforcedBindingModel { Id = order.ReinforcedId }).ReinforcedMaterial, order.Count))
+                {
+                    updateBindingModel.Status = OrderStatus.Требуются_материалы;
+                }
+                else
+                {
+                    updateBindingModel.DateImplement = DateTime.Now;
+                    updateBindingModel.Status = OrderStatus.Выполняется;
+                    updateBindingModel.ImplementerId = model.ImplementerId;
+                }
+
+                _orderStorage.Update(updateBindingModel);
             }
-            if (!_storeHouseStorage.TakeFromStoreHouse(_reinforcedStorage
-                .GetElement(new ReinforcedBindingModel { Id = order.ReinforcedId }).ReinforcedMaterial, order.Count))
-            {
-                throw new Exception("Недостаточно материалов");
-            }
-            _orderStorage.Update(new OrderBindingModel
-            {
-                Id = order.Id,
-                ClientId = order.ClientId,
-                ReinforcedId = order.ReinforcedId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
