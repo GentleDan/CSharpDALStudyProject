@@ -41,7 +41,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
         private async void WorkerWorkAsync(ImplementerViewModel implementer, List<OrderViewModel> orders)
         {
             // ищем заказы, которые уже в работе (вдруг исполнителя прервали)
-            var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel { ImplementerId = implementer.Id }));
+            var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel { ImplementerId = implementer.Id , Status = OrderStatus.Выполняется}));
             foreach (var order in runOrders)
             {
                 // делаем работу заново
@@ -50,8 +50,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 // отдыхаем
                 Thread.Sleep(implementer.PauseTime);
             }
-            var requiredMaterialsOrders = await Task.Run(() => _orderLogic.Read(null)
-                .Where(rec => rec.Status == OrderStatus.Требуются_материалы).ToList());
+            var requiredMaterialsOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel 
+            { ImplementerId = implementer.Id, Status = OrderStatus.Требуются_материалы }));
 
             foreach (var order in requiredMaterialsOrders)
             {

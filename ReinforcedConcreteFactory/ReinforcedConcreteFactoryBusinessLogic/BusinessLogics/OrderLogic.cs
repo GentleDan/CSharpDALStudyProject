@@ -64,6 +64,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 {
                     Id = order.Id,
                     ReinforcedId = order.ReinforcedId,
+                    ImplementerId = model.ImplementerId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
@@ -79,9 +80,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                 {
                     updateBindingModel.DateImplement = DateTime.Now;
                     updateBindingModel.Status = OrderStatus.Выполняется;
-                    updateBindingModel.ImplementerId = model.ImplementerId;
+                  
                 }
-
                 _orderStorage.Update(updateBindingModel);
             }
         }
