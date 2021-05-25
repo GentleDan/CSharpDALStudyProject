@@ -4,6 +4,7 @@ using ReinforcedConcreteFactoryBusinessLogic.BusinessLogics;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ReinforcedConcreteFactoryRestApi.Controllers
@@ -16,11 +17,13 @@ namespace ReinforcedConcreteFactoryRestApi.Controllers
         private readonly MailLogic _mailLogic;
         private readonly int _passwordMaxLength = 50;
         private readonly int _passwordMinLength = 10;
+        private readonly int messagesOnPage = 2;
 
         public ClientController(ClientLogic logic, MailLogic mLogic)
         {
             _logic = logic;
             _mailLogic = mLogic;
+            if (messagesOnPage < 1) { messagesOnPage = 5; }
         }
         [HttpGet]
         public ClientViewModel Login(string login, string password)
@@ -33,7 +36,12 @@ namespace ReinforcedConcreteFactoryRestApi.Controllers
             return (client != null && client.Count > 0) ? client[0] : null;
         }
         [HttpGet]
-        public List<MessageInfoViewModel> GetMessages(int clientId) => _mailLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
+        public (List<MessageInfoViewModel>, bool) GetMessages(int clientId, int page)
+        {
+            var list = _mailLogic.Read(new MessageInfoBindingModel { ClientId = clientId, ToSkip = (page - 1) * messagesOnPage, ToTake = messagesOnPage + 1 }).ToList();
+            var hasNext = !(list.Count() <= messagesOnPage);
+            return (list.Take(messagesOnPage).ToList(), hasNext);
+        }
 
         [HttpPost]
         public void Register(ClientBindingModel model)

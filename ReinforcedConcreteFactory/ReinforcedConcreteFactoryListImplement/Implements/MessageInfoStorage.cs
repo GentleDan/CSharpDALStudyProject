@@ -30,22 +30,40 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
             {
                 return null;
             }
+            int toSkip = model.ToSkip ?? 0;
+            int toTake = model.ToTake ?? source.MessageInfos.Count;
+
             List<MessageInfoViewModel> result = new List<MessageInfoViewModel>();
-            foreach (var message in source.MessageInfos)
+
+            if (model.ToSkip.HasValue && model.ToTake.HasValue && !model.ClientId.HasValue)
             {
-                if ((model.ClientId.HasValue && message.ClientId == model.ClientId) ||
-                (!model.ClientId.HasValue && message.DateDelivery.Date == model.DateDelivery.Date))
+                foreach (var messageInfo in source.MessageInfos)
                 {
-                    result.Add(CreateModel(message));
+                    if (toSkip > 0) { toSkip--; continue; }
+                    if (toTake > 0)
+                    {
+                        result.Add(CreateModel(messageInfo));
+                        toTake--;
+                    }
                 }
-            }
-            if (result.Count > 0)
-            {
                 return result;
             }
-            return null;
+            foreach (var messageInfo in source.MessageInfos)
+            {
+                if ((model.ClientId.HasValue && messageInfo.ClientId == model.ClientId) ||
+                    (!model.ClientId.HasValue && messageInfo.DateDelivery.Date == model.DateDelivery.Date))
+                {
+                    if (toSkip > 0) { toSkip--; continue; }
+                    if (toTake > 0)
+                    {
+                        result.Add(CreateModel(messageInfo));
+                        toTake--;
+                    }
+                }
+            }
+            return result;
         }
-        public void Insert(MessageInfoBindingModel model)
+            public void Insert(MessageInfoBindingModel model)
         {
             if (model == null)
             {

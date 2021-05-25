@@ -10,8 +10,8 @@ using ReinforcedConcreteFactoryDatabaseImplement;
 namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 {
     [DbContext(typeof(ReinforcedConcreteFactoryDatabase))]
-    [Migration("20210503084215_addMessage")]
-    partial class addMessage
+    [Migration("20210525145920_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -196,6 +196,54 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                     b.ToTable("ReinforcedMaterials");
                 });
 
+            modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.StoreHouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NameOfResponsiblePerson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StoreHouseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreHouses");
+                });
+
+            modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.StoreHouseMaterial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StoreHouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("StoreHouseId");
+
+                    b.ToTable("StoreHouseMaterials");
+                });
+
             modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.MessageInfo", b =>
                 {
                     b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Client", "Client")
@@ -233,6 +281,21 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                     b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Reinforced", "Reinforced")
                         .WithMany("ReinforcedMaterials")
                         .HasForeignKey("ReinforcedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.StoreHouseMaterial", b =>
+                {
+                    b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Material", "Material")
+                        .WithMany("StoreHouseMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.StoreHouse", "StoreHouse")
+                        .WithMany("StoreHouseMaterials")
+                        .HasForeignKey("StoreHouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

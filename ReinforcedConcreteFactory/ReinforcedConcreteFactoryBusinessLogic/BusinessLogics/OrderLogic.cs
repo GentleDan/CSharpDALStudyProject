@@ -77,6 +77,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                     Id = order.Id,
                     ReinforcedId = order.ReinforcedId,
                     ImplementerId = model.ImplementerId,
+                    DateImplement = DateTime.Now,
+                    Status = OrderStatus.Выполняется,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
@@ -95,9 +97,6 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
                   
                 }
                 _orderStorage.Update(updateBindingModel);
-                    DateImplement = DateTime.Now,
-                    Status = OrderStatus.Выполняется
-                });
                 MailLogic.MailSendAsync(new MailSendInfo
                 {
                     MailAddress = _clientStorage.GetElement(new ClientBindingModel

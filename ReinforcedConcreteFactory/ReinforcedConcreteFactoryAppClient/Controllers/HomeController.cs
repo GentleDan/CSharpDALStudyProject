@@ -31,13 +31,17 @@ namespace ReinforcedConcreteFactoryAppClient.Controllers
             }
             return View(Program.Client);
         }
-        public IActionResult Mail()
+        public IActionResult Mail(int page = 1)
         {
             if (Program.Client == null)
             {
                 return Redirect("~/Home/Enter");
             }
-            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}"));
+
+            var temp = APIClient.GetRequest<(List<MessageInfoViewModel> list, bool hasNext)>($"api/client/getmessages?clientId={Program.Client.Id}&page={page}");
+
+            (List<MessageInfoViewModel>, bool, int) model = (temp.list, temp.hasNext, page);
+            return View(model);
         }
         [HttpPost]
         public void Privacy(string login, string password, string fio)
