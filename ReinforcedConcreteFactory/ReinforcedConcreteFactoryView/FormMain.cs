@@ -2,6 +2,7 @@
 using ReinforcedConcreteFactoryBusinessLogic.BusinessLogics;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -89,9 +90,13 @@ namespace ReinforcedConcreteFactoryView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    _report.SaveReinforcedToWordFile(new ReportBindingModel
+                    MethodInfo method = _report.GetType().GetMethod("SaveReinforcedToWordFile");
+                    method.Invoke(_report, new object[]
                     {
-                        FileName = dialog.FileName
+                            new ReportBindingModel
+                            {
+                                FileName = dialog.FileName,
+                            }
                     });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

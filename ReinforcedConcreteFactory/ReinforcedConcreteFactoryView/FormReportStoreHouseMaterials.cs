@@ -1,6 +1,9 @@
 ﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.BusinessLogics;
+using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -44,7 +47,8 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                var storeHouseMaterials = logic.GetStoreHouseMaterials();
+                MethodInfo method = logic.GetType().GetMethod("GetStoreHouseMaterials");
+                List<ReportStoreHouseMaterialViewModel> storeHouseMaterials = (List<ReportStoreHouseMaterialViewModel>)method.Invoke(logic, null);
                 if (storeHouseMaterials != null)
                 {
                     storeHouseMaterialsDataGridView.Rows.Clear();
