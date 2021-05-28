@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Runtime.Serialization;
 using ReinforcedConcreteFactoryBusinessLogic.Attributes;
 
@@ -19,7 +18,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
         [Column(title: "ФИО ответственного", width: 100)]
         public string NameOfResponsiblePerson { get; set; }
         [DataMember]
-        [Column(title: "Дата создания", width: 100)]
+        [Column(title: "Дата создания", width: 100, format:"dd/MM/yyyy")]
         public DateTime DateCreate { get; set; }
         [DataMember]
         public Dictionary<int, (string, int)> StoreHouseMaterials { get; set; }

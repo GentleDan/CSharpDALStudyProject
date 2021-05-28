@@ -134,9 +134,13 @@ namespace ReinforcedConcreteFactoryView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    _report.SaveStoreHousesToWordFile(new ReportBindingModel
+                    MethodInfo method = _report.GetType().GetMethod("SaveStoreHousesToWordFile");
+                    method.Invoke(_report, new object[]
                     {
-                        FileName = dialog.FileName
+                            new ReportBindingModel
+                            {
+                                FileName = dialog.FileName,
+                            }
                     });
 
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);

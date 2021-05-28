@@ -49,8 +49,6 @@
             this.storeHousesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storeHouseMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersForAllDatesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.implementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createBackUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataOrderFactoryGridView)).BeginInit();

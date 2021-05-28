@@ -14,7 +14,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
         [Column(title: "Название изделия", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ReinforcedName { get; set; }
         [DataMember]
-        [Column(title: "Цена", width: 100)]
+        [Column(title: "Цена", width: 100, format: "c1")]
         public decimal Price { get; set; }
         [DataMember]
         public Dictionary<int, (string, int)> ReinforcedMaterial { get; set; }

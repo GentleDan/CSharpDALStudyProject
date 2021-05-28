@@ -30,16 +30,16 @@ namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
         [Column(title: "Количество", width: 100)]
         public int Count { get; set; }
         [DataMember]
-        [Column(title: "Сумма", width: 50)]
+        [Column(title: "Сумма", width: 70, format:"c1")]
         public decimal Sum { get; set; }
         [DataMember]
         [Column(title: "Статус", width: 100)]
         public OrderStatus Status { get; set; }
         [DataMember]
-        [Column(title: "Дата создания", width: 100)]
+        [Column(title: "Дата создания", width: 100, format: "dd/MM/yyyy")]
         public DateTime DateCreate { get; set; }
         [DataMember]
-        [Column(title: "Дата выполнения", width: 100)]
+        [Column(title: "Дата выполнения", width: 100, format: "dd/MM/yyyy")]
         public DateTime? DateImplement { get; set; }
 
     }

@@ -127,7 +127,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
             {
                 FileName = model.FileName,
                 Title = "Список изделий",
-                Reinforceds = (List<ReinforcedViewModel>)method.Invoke(this, null)
+                Reinforceds = _reinforcedStorage.GetFullList()
             });
         }
         /// <summary>
@@ -163,6 +163,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogics
 
         public void SaveStoreHousesToWordFile(ReportBindingModel model)
         {
+            MethodInfo method = GetType().GetMethod("GetReinforcedMaterials");
             SaveToWord.CreateDocStoreHouse(new WordInfoStoreHouse
             {
                 FileName = model.FileName,

@@ -88,7 +88,8 @@ namespace ReinforcedConcreteFactoryView
                                 ReadOnly = true,
                                 HeaderText = columnAttr.Title,
                                 Visible = columnAttr.Visible,
-                                Width = columnAttr.Width
+                                Width = columnAttr.Width,
+                                DefaultCellStyle = new DataGridViewCellStyle { Format = columnAttr.Format }
                             };
                             if (columnAttr.GridViewAutoSize !=
                             GridViewAutoSize.None)

@@ -56,9 +56,13 @@ namespace ReinforcedConcreteFactoryView
                 {
                     try
                     {
-                        logic.SaveReinforcedMaterialToExcelFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveReinforcedMaterialToExcelFile");
+                        method.Invoke(logic, new object[]
                         {
-                            FileName = dialog.FileName
+                            new ReportBindingModel
+                            {
+                                FileName = dialog.FileName,
+                            }
                         });
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);

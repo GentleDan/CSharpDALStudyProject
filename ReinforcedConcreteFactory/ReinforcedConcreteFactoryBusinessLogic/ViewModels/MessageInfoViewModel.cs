@@ -13,7 +13,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
         [Column(title: "Отправитель", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
         public string SenderName { get; set; }
-        [Column(title: "Дата письма", width: 150)]
+        [Column(title: "Дата письма", width: 150, format:"dd/MM/yyyy")]
         [DataMember]
         public DateTime DateDelivery { get; set; }
         [Column(title: "Заголовок", width: 150)]
